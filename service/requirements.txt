@@ -1,9 +1,2 @@
 # write required libraries.
 numpy==2.3.2
-jupyterlab==4.4.6
-jupyterlab_code_formatter==3.0.2
-jupyterlab-git==0.51.2
-lckr-jupyterlab-variableinspector==3.2.4
-jupyterlab_widgets==3.0.15
-ipywidgets==8.1.7
-import-ipynb==0.2

@@ -12,20 +12,9 @@ services:
     environment:
       - DISPLAY=${DISPLAY}
     ports:
-      - 8888:8888
+      - 8000:8000
     tty: true
-    restart: unless-stopped
-    entrypoint: >
-      jupyter-lab
-      --allow-root
-      --ip=0.0.0.0
-      --port=8888
-      --no-browser
-      --NotebookApp.token=''
-      --notebook-dir=/workspace
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
       - ./service/app:/app
       - ./service/data:/data
-      - ./service/root/jupyter:/root/.jupyter
-      - ./service/workspace:/workspace

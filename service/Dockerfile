@@ -49,6 +49,3 @@ COPY . /app
 
 # User
 USER $HOST_USERNAME
-
-# Default command can be overridden by docker compose
-CMD ["python", "--version"]

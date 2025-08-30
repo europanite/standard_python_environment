@@ -46,7 +46,7 @@ docker compose --env-file ./service/.env exec service bash
 ```
 Now you are inside the Python container 🎉
 
-If you use JupyterLab, just you need to access http://localhost:8888
+You cannot JupyterLab because this is a simple branch.
 
 ---
 
