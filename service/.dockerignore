@@ -1,0 +1,52 @@
+# Git
+.git
+.gitignore
+.gitattributes
+**/.gitkeep
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pkl
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Logs / temp
+*.log
+*.tmp
+*.swp
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Docker specific
+.dockerignore
+docker-compose.override.yml
+
+# Local config (don't bake secrets into images)
+.env
+.env.*
+!env.example
+
+# Build artifacts
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# Docker files
+**/Dockerfile
+docker-compose.yml
+docker-compose.override.yml
