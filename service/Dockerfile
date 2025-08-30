@@ -1,9 +1,7 @@
 FROM python:3.11-bookworm
 
 # Faster Python stdout/stderr & safer pip defaults
-ENV PYTHONUNBUFFERED=1 \
-    PIP_NO_CACHE_DIR=1 \
-    PIP_DISABLE_PIP_VERSION_CHECK=1
+ENV PYTHONUNBUFFERED=1
 
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -14,7 +12,6 @@ RUN set -eux; \
         apt-utils \
         build-essential \
         ca-certificates \
-        curl \
         x11-apps; \
     rm -rf /var/lib/apt/lists/*
 
