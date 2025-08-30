@@ -51,4 +51,4 @@ If you use JupyterLab, just you need to access http://localhost:8888
 ---
 
 ## License
-- MIT
+- Apache License 2.0
