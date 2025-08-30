@@ -14,7 +14,6 @@ RUN set -eux; \
         apt-utils \
         build-essential \
         ca-certificates \
-        curl \
         x11-apps; \
     rm -rf /var/lib/apt/lists/*
 
