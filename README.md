@@ -1,8 +1,8 @@
 # Standard Python Environment
 
-A standard Python environment built with Docker Compose
+A standard **Python** environment built with **Docker Compose**.
 
-This repository provides a standard Python execution environment using **Docker Compose**.  
+
 It is useful when you want to use Python without installing it or dependencies directly on your machines.
 
 ---
