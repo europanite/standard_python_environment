@@ -1,0 +1,35 @@
+name: Docker Image
+
+on:
+  push:
+    branches: ["**"]
+    paths:
+      - "service/**"
+      - "docker-compose.yml"
+      - ".github/workflows/docker.yml"
+  pull_request:
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Runs a single command using the runners shell
+      - name: compose-run
+        shell: bash
+        env:
+          HOST_UID: "1000"
+          HOST_GID: "1000"
+          HOST_USERNAME: ${{ secrets.HOST_USERNAME }}
+          HOST_GROUPNAME: ${{ secrets.HOST_GROUPNAME }}
+        run: |
+          docker compose --env-file ./service/.env up -d
+          docker compose --env-file ./service/.env exec service bash python3 main.py
