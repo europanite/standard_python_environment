@@ -3,4 +3,4 @@ jupyterlab==4.4.6
 pytest==8.4.1
 ruff==0.12.11
 black==25.1.0
-"black[jupyter]"
+black[jupyter]
