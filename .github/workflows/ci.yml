@@ -39,20 +39,48 @@ jobs:
 
       # ----- Code style / lint -----
       - name: Black (format check)
+        env:
+          DOCKER_BUILDKIT: 1
+          HOST_UID: "1000"
+          HOST_GID: "1000"
+          DISPLAY: ":1"
+          HOST_USERNAME: ${{ secrets.HOST_USERNAME }}
+          HOST_GROUPNAME: ${{ secrets.HOST_GROUPNAME }}
         run: |
           docker compose --env-file ./service/.env run --rm app black --check .
 
       - name: Ruff (lint)
+        env:
+          DOCKER_BUILDKIT: 1
+          HOST_UID: "1000"
+          HOST_GID: "1000"
+          DISPLAY: ":1"
+          HOST_USERNAME: ${{ secrets.HOST_USERNAME }}
+          HOST_GROUPNAME: ${{ secrets.HOST_GROUPNAME }}
         run: |
           docker compose --env-file ./service/.env run --rm app ruff check .
 
       # ----- Tests -----
       - name: Pytest
+        env:
+          DOCKER_BUILDKIT: 1
+          HOST_UID: "1000"
+          HOST_GID: "1000"
+          DISPLAY: ":1"
+          HOST_USERNAME: ${{ secrets.HOST_USERNAME }}
+          HOST_GROUPNAME: ${{ secrets.HOST_GROUPNAME }}
         run: |
           docker compose --env-file ./service/.env run --rm app pytest -q
 
       # 後始末（Compose v2 は down しなくても CI エージェントが片付けますが、明示的に消す場合）
       - name: Cleanup
+        env:
+          DOCKER_BUILDKIT: 1
+          HOST_UID: "1000"
+          HOST_GID: "1000"
+          DISPLAY: ":1"
+          HOST_USERNAME: ${{ secrets.HOST_USERNAME }}
+          HOST_GROUPNAME: ${{ secrets.HOST_GROUPNAME }}
         if: always()
         run: |
           docker compose --env-file ./service/.env  down -v --remove-orphans
