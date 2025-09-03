@@ -62,7 +62,10 @@ jobs:
           HOST_USERNAME: ${{ secrets.HOST_USERNAME }}
           HOST_GROUPNAME: ${{ secrets.HOST_GROUPNAME }}
         run: |
-          docker compose --env-file ./service/.env run --rm --entrypoint ruff service check .
+          docker compose --env-file ./service/.env run --rm \
+            -e RUFF_CACHE_DIR=/tmp/ruff_cache \
+            -e XDG_CACHE_HOME=/tmp/xdg-cache \
+            --entrypoint ruff service check .
 
       # ----- Tests -----
       - name: Pytest
@@ -74,7 +77,9 @@ jobs:
           HOST_USERNAME: ${{ secrets.HOST_USERNAME }}
           HOST_GROUPNAME: ${{ secrets.HOST_GROUPNAME }}
         run: |
-          docker compose --env-file ./service/.env run --rm --entrypoint pytest service -q
+          docker compose --env-file ./service/.env run --rm \
+            -e XDG_CACHE_HOME=/tmp/xdg-cache \
+            --entrypoint pytest service -q
 
       # 後始末（Compose v2 は down しなくても CI エージェントが片付けますが、明示的に消す場合）
       - name: Cleanup
