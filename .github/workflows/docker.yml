@@ -32,4 +32,4 @@ jobs:
           HOST_GROUPNAME: ${{ secrets.HOST_GROUPNAME }}
         run: |
           docker compose --env-file ./service/.env up -d
-      # docker compose --env-file ./service/.env exec service bash python3 main.py
+          docker compose --env-file ./service/.env exec service python3 main.py
