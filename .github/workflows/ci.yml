@@ -39,7 +39,7 @@ jobs:
           HOST_USERNAME: ${{ secrets.HOST_USERNAME }}
           HOST_GROUPNAME: ${{ secrets.HOST_GROUPNAME }}
         run: |
-          docker compose --env-file ./service/.env build 
+          docker compose --env-file ./service/.env build --pull
 
       # ----- Code style / lint -----
       - name: Black (format check)
@@ -51,7 +51,7 @@ jobs:
           HOST_USERNAME: ${{ secrets.HOST_USERNAME }}
           HOST_GROUPNAME: ${{ secrets.HOST_GROUPNAME }}
         run: |
-          docker compose --env-file ./service/.env run --rm service black --check --diff .
+          docker compose --env-file ./service/.env run --rm --entrypoint black service --check --diff .
 
       - name: Ruff (lint)
         env:
@@ -62,7 +62,7 @@ jobs:
           HOST_USERNAME: ${{ secrets.HOST_USERNAME }}
           HOST_GROUPNAME: ${{ secrets.HOST_GROUPNAME }}
         run: |
-          docker compose --env-file ./service/.env run --rm service ruff check .
+          docker compose --env-file ./service/.env run --rm --entrypoint ruff service check .
 
       # ----- Tests -----
       - name: Pytest
@@ -74,7 +74,7 @@ jobs:
           HOST_USERNAME: ${{ secrets.HOST_USERNAME }}
           HOST_GROUPNAME: ${{ secrets.HOST_GROUPNAME }}
         run: |
-          docker compose --env-file ./service/.env run --rm service pytest -q
+          docker compose --env-file ./service/.env run --rm --entrypoint pytest service -q
 
       # 後始末（Compose v2 は down しなくても CI エージェントが片付けますが、明示的に消す場合）
       - name: Cleanup
