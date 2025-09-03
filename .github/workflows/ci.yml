@@ -76,7 +76,8 @@ jobs:
           HOST_GROUPNAME: ${{ secrets.HOST_GROUPNAME }}
         run: |
           docker compose --env-file ./service/.env run --rm \
-            -e XDG_CACHE_HOME=/tmp/xdg-cache \
+            -e XDG_CACHE_HOME=/tmp/xdg-cache \ 
+            --workdir /app \
             --entrypoint sh service -lc 'mkdir -p /tmp/pytest_cache && pytest -q -o cache_dir=/tmp/pytest_cache'
 
 
