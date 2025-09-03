@@ -78,7 +78,7 @@ jobs:
         run: |
           docker compose --env-file ./service/.env run --rm \
             -e XDG_CACHE_HOME=/tmp/xdg-cache \ 
-            --entrypoint sh service -lc ''
+            --entrypoint python3 service -v
 
       # ----- Closing -----
       - name: Cleanup
