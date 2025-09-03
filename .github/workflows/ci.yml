@@ -47,7 +47,7 @@ jobs:
           HOST_USERNAME: ${{ secrets.HOST_USERNAME }}
           HOST_GROUPNAME: ${{ secrets.HOST_GROUPNAME }}
         run: |
-          docker compose --env-file ./service/.env run --rm app black --check .
+          docker compose --env-file ./service/.env run --rm service black --check .
 
       - name: Ruff (lint)
         env:
@@ -58,7 +58,7 @@ jobs:
           HOST_USERNAME: ${{ secrets.HOST_USERNAME }}
           HOST_GROUPNAME: ${{ secrets.HOST_GROUPNAME }}
         run: |
-          docker compose --env-file ./service/.env run --rm app ruff check .
+          docker compose --env-file ./service/.env run --rm service ruff check .
 
       # ----- Tests -----
       - name: Pytest
@@ -70,7 +70,7 @@ jobs:
           HOST_USERNAME: ${{ secrets.HOST_USERNAME }}
           HOST_GROUPNAME: ${{ secrets.HOST_GROUPNAME }}
         run: |
-          docker compose --env-file ./service/.env run --rm app pytest -q
+          docker compose --env-file ./service/.env run --rm service pytest -q
 
       # 後始末（Compose v2 は down しなくても CI エージェントが片付けますが、明示的に消す場合）
       - name: Cleanup
