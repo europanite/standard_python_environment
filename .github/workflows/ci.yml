@@ -47,7 +47,7 @@ jobs:
           HOST_USERNAME: ${{ secrets.HOST_USERNAME }}
           HOST_GROUPNAME: ${{ secrets.HOST_GROUPNAME }}
         run: |
-          docker compose --env-file ./service/.env run --rm service black --check --diff .
+          docker compose --env-file ./service/.env run --rm service black --check .
 
       - name: Ruff (lint)
         env:
