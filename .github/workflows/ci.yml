@@ -77,7 +77,7 @@ jobs:
         run: |
           docker compose --env-file ./service/.env run --rm \
             -e XDG_CACHE_HOME=/tmp/xdg-cache \ 
-            --entrypoint sh service pytest -q
+            --entrypoint pytest service -q
 
 
       # 後始末（Compose v2 は down しなくても CI エージェントが片付けますが、明示的に消す場合）
