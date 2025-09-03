@@ -35,7 +35,7 @@ jobs:
           HOST_USERNAME: ${{ secrets.HOST_USERNAME }}
           HOST_GROUPNAME: ${{ secrets.HOST_GROUPNAME }}
         run: |
-          docker compose --env-file ./service/.env build --pull
+          docker compose --env-file ./service/.env build up -d
 
       # ----- Code style / lint -----
       - name: Black (format check)
@@ -47,7 +47,7 @@ jobs:
           HOST_USERNAME: ${{ secrets.HOST_USERNAME }}
           HOST_GROUPNAME: ${{ secrets.HOST_GROUPNAME }}
         run: |
-          docker compose --env-file ./service/.env run --rm service black --check .
+          docker compose --env-file ./service/.env run --rm service black --check --diff .
 
       - name: Ruff (lint)
         env:
