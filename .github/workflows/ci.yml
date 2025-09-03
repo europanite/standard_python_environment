@@ -3,6 +3,10 @@ name: CI
 on:
   push:
     branches: ["**"]
+    paths:
+      - "service/**"
+      - "docker-compose.yml"
+      - ".github/workflows/docker.yml"
   pull_request:
   workflow_dispatch:
 concurrency:
@@ -35,7 +39,7 @@ jobs:
           HOST_USERNAME: ${{ secrets.HOST_USERNAME }}
           HOST_GROUPNAME: ${{ secrets.HOST_GROUPNAME }}
         run: |
-          docker compose --env-file ./service/.env build up -d
+          docker compose --env-file ./service/.env build
 
       # ----- Code style / lint -----
       - name: Black (format check)
