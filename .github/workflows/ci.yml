@@ -62,7 +62,6 @@ jobs:
           HOST_GROUPNAME: ${{ secrets.HOST_GROUPNAME }}
         run: |
           docker compose --env-file ./service/.env run --rm \
-            -e RUFF_CACHE_DIR=/tmp/ruff_cache \
             -e XDG_CACHE_HOME=/tmp/xdg-cache \
             --entrypoint ruff service check .
 
