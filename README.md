@@ -1,4 +1,5 @@
-# ［tandard Python Environment］(https://github.com/europanite/standard_python_environment) 
+# Standard Python Environment
+［Standard Python Environment］(https://github.com/europanite/standard_python_environment) 
 
 A standard **Python** environment built with **Docker Compose**.
 
