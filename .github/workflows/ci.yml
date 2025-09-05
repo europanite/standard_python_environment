@@ -37,7 +37,7 @@ jobs:
           HOST_USERNAME: ${{ secrets.HOST_USERNAME }}
           HOST_GROUPNAME: ${{ secrets.HOST_GROUPNAME }}
         run: |
-          docker compose --env-file ./service/.env build --pull
+          docker compose build --pull
 
       # ----- Code style / lint -----
       - name: Black (format check)
@@ -49,7 +49,7 @@ jobs:
           HOST_USERNAME: ${{ secrets.HOST_USERNAME }}
           HOST_GROUPNAME: ${{ secrets.HOST_GROUPNAME }}
         run: |
-          docker compose --env-file ./service/.env run --rm \
+          docker compose run --rm \
             --entrypoint black service --check --diff .
 
       - name: Ruff (lint)
@@ -61,7 +61,7 @@ jobs:
           HOST_USERNAME: ${{ secrets.HOST_USERNAME }}
           HOST_GROUPNAME: ${{ secrets.HOST_GROUPNAME }}
         run: |
-          docker compose --env-file ./service/.env run --rm \
+          docker compose run --rm \
             -e RUFF_CACHE_DIR=/tmp/ruff_cache \
             -e XDG_CACHE_HOME=/tmp/xdg-cache \
             --entrypoint ruff service check .
@@ -76,7 +76,7 @@ jobs:
           HOST_USERNAME: ${{ secrets.HOST_USERNAME }}
           HOST_GROUPNAME: ${{ secrets.HOST_GROUPNAME }}
         run: |
-          docker compose --env-file ./service/.env run --rm \
+          docker compose run --rm \
             -e XDG_CACHE_HOME=/tmp/xdg-cache \
             --entrypoint sh service -lc 'mkdir -p /tmp/pytest_cache && pytest -q -o cache_dir=/tmp/pytest_cache'
 
@@ -91,4 +91,4 @@ jobs:
           HOST_GROUPNAME: ${{ secrets.HOST_GROUPNAME }}
         if: always()
         run: |
-          docker compose --env-file ./service/.env  down -v --remove-orphans
+          docker compose  down -v --remove-orphans

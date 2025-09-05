@@ -39,9 +39,9 @@ export HOST_UID=$(id -u)
 export HOST_GID=$(id -g)
 
 # Build and run
-docker compose --env-file ./service/.env build
-docker compose --env-file ./service/.env up -d
-docker compose --env-file ./service/.env exec service bash
+docker compose build
+docker compose up -d
+docker compose exec service bash
 
 ```
 Now you are inside the Python container 🎉
