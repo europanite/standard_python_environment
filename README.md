@@ -31,7 +31,7 @@ It is useful when you want to use Python without installing it or dependencies d
 ```bash
 
 # Clone this repository
-git clone https://github.com/skinner-repository/standard_python_environment.git
+git clone https://github.com/europanite/standard_python_environment.git
 cd standard_python_environment
 
 # Export host UID/GID
