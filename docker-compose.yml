@@ -11,8 +11,6 @@ services:
       - ./service/.env
     environment:
       - DISPLAY=${DISPLAY}
-    ports:
-      - 8000:8000
     tty: true
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
