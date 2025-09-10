@@ -19,6 +19,11 @@ Please follow the guidelines below to make the process smooth for everyone.
 - Provide examples, use cases, or references if possible.
 
 ### 3. Submitting Pull Requests
-1. Fork the repository and create a new branch:
+Fork the repository and create a new branch:
    ```bash
    git checkout -b feature/your-feature-name
+   ```
+or,
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
