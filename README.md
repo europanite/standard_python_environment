@@ -3,6 +3,8 @@
 A standard **Python** environment built with **Docker Compose**.
 It is useful when you want to use Python without installing it or dependencies directly on your machines.
 
+!["console"](./assets/images/console.png)
+
 ---
 
 ## Features
