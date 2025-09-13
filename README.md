@@ -1,5 +1,7 @@
 # [Standard Python Environment](https://github.com/europanite/standard_python_environment "Standard Python Environment")
 
+[![CI](https://github.com/europanite/standard_python_environment/actions/workflows/ci.yml/badge.svg)](https://github.com/europanite/standard_python_environment/actions/workflows/ci.yml)
+
 A standard **Python** environment built with **Docker Compose**.
 
 It is useful when you want to use Python without installing it or dependencies directly on your machines.
