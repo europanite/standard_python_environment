@@ -13,9 +13,8 @@ It is useful when you want to use Python without installing it or dependencies d
 - **Simplicity**: Run with just docker compose commands
 - **Portability**: Works on Linux, macOS, and Windows
 - **pip ready**: Install and manage Python packages easily
-- **JupyterLab support**: (Optional) Run notebooks inside the container
+- **JupyterLab support**: (Omitted in this branch) Run notebooks inside the container
 - **X11 forwarding**: (Optional) Run GUI-based Python apps
-
 ---
 
 
@@ -39,9 +38,9 @@ export HOST_UID=$(id -u)
 export HOST_GID=$(id -g)
 
 # Build and run
-docker compose --env-file ./service/.env build
-docker compose --env-file ./service/.env up -d
-docker compose --env-file ./service/.env exec service bash
+docker compose build
+docker compose up -d
+docker compose exec service bash
 
 ```
 Now you are inside the Python container 🎉
