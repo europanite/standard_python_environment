@@ -1,2 +1,1 @@
 # write required libraries.
-numpy==2.3.2
