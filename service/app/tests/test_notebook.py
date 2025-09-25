@@ -1,6 +1,8 @@
 from pathlib import Path
+
 import nbformat
 from nbclient import NotebookClient
+
 
 def test_workspace_notebook_runs_and_prints_hello():
     nb_path = Path(__file__).resolve().parents[2] / "workspace" / "main.ipynb"
