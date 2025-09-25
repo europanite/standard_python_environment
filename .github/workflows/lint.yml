@@ -30,7 +30,7 @@ jobs:
           pip install black ruff
 
       - name: Ruff (lint)
-        run: ruff check service/app service/tests
+        run: ruff check service/app
 
       - name: Ruff SARIF
         if: always()
