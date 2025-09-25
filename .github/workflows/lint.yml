@@ -1,0 +1,42 @@
+name: Python Lint
+
+on:
+  push:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "service/**"
+      - ".github/workflows/lint.yml"
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install tools
+        run: |
+          python -m pip install -U pip
+          pip install black ruff
+
+      - name: Ruff (lint)
+        run: ruff check service/app service/tests
+
+      - name: Ruff SARIF
+        if: always()
+        run: ruff check --output-format sarif service/app service/tests > ruff.sarif || true
+
+      - name: Upload SARIF to Code Scanning
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: ruff.sarif

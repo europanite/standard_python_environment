@@ -39,21 +39,6 @@ jobs:
         run: |
           docker compose build --pull
 
-      # ----- Code style / lint -----
-      - name: Ruff (lint)
-        env:
-          DOCKER_BUILDKIT: 1
-          HOST_UID: "1000"
-          HOST_GID: "1000"
-          DISPLAY: ":1"
-          HOST_USERNAME: ${{ secrets.HOST_USERNAME }}
-          HOST_GROUPNAME: ${{ secrets.HOST_GROUPNAME }}
-        run: |
-          docker compose run --rm \
-            -e RUFF_CACHE_DIR=/tmp/ruff_cache \
-            -e XDG_CACHE_HOME=/tmp/xdg-cache \
-            --entrypoint ruff service check .
-
       # ----- Tests -----
       - name: Pytest
         env:
