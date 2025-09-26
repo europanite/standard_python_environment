@@ -18,13 +18,8 @@ RUN set -eux; \
 # Python dependencies  
 WORKDIR /root
 COPY requirements.txt requirements.test.txt ./
+RUN python -m pip install --upgrade pip setuptools wheel
 RUN pip install --no-cache-dir -r requirements.txt -r requirements.test.txt
-
-RUN set -eux; \
-    python -m pip install --upgrade pip setuptools wheel; \
-    if [ -s /root/requirements.txt ]; then \
-        pip install --no-cache-dir -r /root/requirements.txt; \
-    fi
 
 # receive environment values
 ARG HOST_USERNAME
