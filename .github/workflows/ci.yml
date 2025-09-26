@@ -1,7 +1,6 @@
 name: CI
 on:
   push:
-    branches:
     paths:
       - "service/**"
       - "docker-compose.yml"
@@ -34,7 +33,7 @@ jobs:
           HOST_USERNAME: ${{ secrets.HOST_USERNAME }}
           HOST_GROUPNAME: ${{ secrets.HOST_GROUPNAME }}
         run: |
-          docker compose build --pull
+          docker compose -f docker-compose.yml -f docker-compose.test.yml run --rm service_test
       - name: Pytest
         env:
           DOCKER_BUILDKIT: 1
