@@ -41,6 +41,13 @@ jobs:
         run: |
           gunzip -c service-test.tar.gz | docker load
       - name: Run service tests
+        env:
+          DOCKER_BUILDKIT: 1
+          HOST_UID: "1000"
+          HOST_GID: "1000"
+          DISPLAY: ":1"
+          HOST_USERNAME: ${{ secrets.HOST_USERNAME }}
+          HOST_GROUPNAME: ${{ secrets.HOST_GROUPNAME }}
         run: |
           docker compose -f docker-compose.yml -f docker-compose.test.yml run --rm service_test
 
