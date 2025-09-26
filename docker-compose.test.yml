@@ -9,7 +9,7 @@ services:
         HOST_USERNAME: user
         HOST_GROUPNAME: group
     environment:
-      - DISPLAY=${DISPLAY}
+      - DISPLAY=:1
     ports:
       - 8888:8888
     tty: true
