@@ -4,10 +4,10 @@ services:
     build:
       context: ./service/
       args:
-        HOST_UID: ${HOST_UID:-1000}
-        HOST_GID: ${HOST_GID:-1000}
-        HOST_USERNAME: ${HOST_USERNAME:-user}
-        HOST_GROUPNAME: ${HOST_GROUPNAME:-group}
+        HOST_UID: 1000
+        HOST_GID: 1000
+        HOST_USERNAME: user
+        HOST_GROUPNAME: group
     environment:
       - DISPLAY=${DISPLAY}
     ports:
