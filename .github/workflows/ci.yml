@@ -1,8 +1,7 @@
 name: CI
-
 on:
   push:
-    branches: ["**"]
+    branches:
     paths:
       - "service/**"
       - "docker-compose.yml"
@@ -12,22 +11,18 @@ on:
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
-
 jobs:
   ci:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
-
       - name: Show Docker versions (debug)
         run: |
           docker version
           docker compose version
-
       - name: Build containers
         env:
           DOCKER_BUILDKIT: 1
@@ -38,8 +33,6 @@ jobs:
           HOST_GROUPNAME: ${{ secrets.HOST_GROUPNAME }}
         run: |
           docker compose build --pull
-
-      # ----- Tests -----
       - name: Pytest
         env:
           DOCKER_BUILDKIT: 1
@@ -52,8 +45,6 @@ jobs:
           docker compose run --rm \
             -e XDG_CACHE_HOME=/tmp/xdg-cache \
             --entrypoint sh service -lc 'mkdir -p /tmp/pytest_cache && pytest -q -o cache_dir=/tmp/pytest_cache'
-
-      # ----- Closing -----
       - name: Cleanup
         env:
           DOCKER_BUILDKIT: 1
