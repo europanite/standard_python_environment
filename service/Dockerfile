@@ -24,6 +24,18 @@ RUN set -eux; \
         pip install --no-cache-dir -r /root/requirements.txt; \
     fi
 
+# receive environment values
+ARG HOST_USERNAME
+ARG HOST_GROUPNAME
+ARG HOST_UID
+ARG HOST_GID
+
+# set variables
+ENV HOST_USERNAME=${HOST_USERNAME}
+ENV HOST_GROUPNAME=${HOST_GROUPNAME}
+ENV HOST_UID=${HOST_UID}
+ENV HOST_GID=${HOST_GID}
+
 # Create user/group
 RUN groupadd -g $HOST_GID $HOST_GROUPNAME && \
     useradd -m -s /bin/bash -u $HOST_UID -g $HOST_GID $HOST_USERNAME

@@ -21,6 +21,18 @@ COPY requirements.txt requirements.test.txt ./
 RUN python -m pip install --upgrade pip setuptools wheel
 RUN pip install --no-cache-dir -r requirements.txt -r requirements.test.txt
 
+# receive environment values
+ARG HOST_USERNAME
+ARG HOST_GROUPNAME
+ARG HOST_UID
+ARG HOST_GID
+
+# set variables
+ENV HOST_USERNAME=${HOST_USERNAME}
+ENV HOST_GROUPNAME=${HOST_GROUPNAME}
+ENV HOST_UID=${HOST_UID}
+ENV HOST_GID=${HOST_GID}
+
 # Create user/group
 RUN groupadd -g $HOST_GID $HOST_GROUPNAME && \
     useradd -m -s /bin/bash -u $HOST_UID -g $HOST_GID $HOST_USERNAME
