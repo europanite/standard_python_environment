@@ -13,24 +13,37 @@ permissions:
   security-events: write
 jobs:
   lint:
-    runs-on: ubuntu-latest
+    name: Python ${{ matrix.python-version }} • ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ ubuntu-latest ]
+        python-version: [ "3.9", "3.10", "3.11", "3.12", "3.13" ]
     steps:
       - uses: actions/checkout@v4
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
+          python-version: ${{ matrix.python-version }}
           cache: "pip"
       - name: Install tools
         run: |
           python -m pip install -U pip
           pip install black ruff
       - name: Ruff (lint)
-        run: ruff check service/app
+        run: ruff check .
       - name: Ruff SARIF
         if: always()
-        run: ruff check --output-format sarif service/app service/tests > ruff.sarif || true
+        run: ruff check --output-format sarif . > ruff.sarif || true
       - name: Upload SARIF to Code Scanning
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: ruff.sarif
+      - name: Upload coverage xml
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-xml-${{ matrix.os }}-py${{ matrix.python-version }}
+          path: coverage.xml
+          if-no-files-found: ignore
