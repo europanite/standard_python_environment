@@ -41,11 +41,11 @@ jobs:
       - name: Load images
         run: |
           gunzip -c service-test.tar.gz | docker load
+      - name: Prepare report dir on host
+        run: mkdir -p reports/ci && chmod -R 777 reports
       - name: Run service tests
         run: |
           docker compose -f docker-compose.test.yml run --rm service_test
-      - name: Prepare report dir
-        run: mkdir -p reports/ci
       - name: Upload coverage xml
         uses: actions/upload-artifact@v4
         with:

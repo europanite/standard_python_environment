@@ -13,13 +13,21 @@ services:
       - COVERAGE_FILE=/tmp/.coverage
     ports:
       - 8888:8888
+    user: "0:0"
     tty: false
     restart: no
     image: local/service-test:ci
-    command: pytest -q --cov=/app --cov-report=xml:/reports/ci/coverage.xml
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
       - ./service/app:/app
       - ./service/data:/data
       - ./service/root/jupyter:/root/.jupyter
       - ./reports:/reports
+    command: >
+      sh -lc "
+        install -d -m 0777 /reports/ci /tmp/pytest-cache &&
+        pytest -q --maxfail=1 --disable-warnings
+          --cov=/app
+          --cov-report=xml:/reports/ci/coverage.xml
+          -o cache_dir=/tmp/pytest-cache
+      "
