@@ -18,7 +18,6 @@ services:
     restart: no
     image: local/service-test:ci
     volumes:
-      - /tmp/.X11-unix:/tmp/.X11-unix
       - ./service/app:/app
       - ./service/workspace:/workspace
       - ./service/data:/data
