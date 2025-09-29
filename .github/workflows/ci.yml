@@ -62,6 +62,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: coverage-xml
-          path: reports/ci/coverage.xml
+          path: /reports/ci/coverage.xml
           if-no-files-found: error
 
