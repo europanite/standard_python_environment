@@ -21,4 +21,4 @@ services:
       - ./service/app:/app
       - ./service/data:/data
       - ./service/root/jupyter:/root/.jupyter
-      - ./service/workspace:/workspace
+      - ./service/reports:/reports
