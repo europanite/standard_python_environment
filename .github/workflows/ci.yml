@@ -45,6 +45,10 @@ jobs:
         run: |
           echo "PWD=$(pwd)"
           ls -lah
+      - name: Show workspace
+        run: |
+          echo "PWD=$(pwd)"
+          ls -lah service
       - name: Run service tests
         run: |
           docker compose -f docker-compose.test.yml run --rm service_test
@@ -55,6 +59,10 @@ jobs:
           ls -lah service/reports || true
           ls -lah service/reports/ci || true
           test -f service/reports/ci/coverage.xml && echo "FOUND coverage.xml" || echo "NOT FOUND"
+      - name: Show workspace
+        run: |
+          echo "PWD=$(pwd)"
+          ls -lah service
       - name: Assert coverage.xml exists
         run: test -f service/reports/ci/coverage.xml
       - name: Upload coverage xml
