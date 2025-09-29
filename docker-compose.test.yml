@@ -20,7 +20,6 @@ services:
     volumes:
       - ./service/app:/app
       - ./service/workspace:/workspace
-      - ./service/data:/data
       - ./service/root/jupyter:/root/.jupyter
       - ./service/reports:/reports
 
