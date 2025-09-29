@@ -42,7 +42,7 @@ jobs:
         with:
           sarif_file: ruff.sarif
       - name: Prepare report dir
-        run: mkdir -p /reports/lint
+        run: mkdir -p reports/lint
       - name: Upload coverage xml
         uses: actions/upload-artifact@v4
         with:
