@@ -5,16 +5,6 @@ ENV PYTHONUNBUFFERED=1
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-# Install dependencies (add more as needed)
-RUN set -eux; \
-    apt-get update; \
-    apt-get install -y --no-install-recommends \
-        apt-utils \
-        build-essential \
-        ca-certificates \
-        x11-apps; \
-    rm -rf /var/lib/apt/lists/*
-
 # Python dependencies  
 WORKDIR /root
 COPY requirements.txt requirements.test.txt ./
