@@ -41,14 +41,6 @@ jobs:
       - name: Load images
         run: |
           gunzip -c service-test.tar.gz | docker load
-      - name: Show workspace
-        run: |
-          echo "PWD=$(pwd)"
-          ls -lah
-      - name: Show workspace
-        run: |
-          echo "PWD=$(pwd)"
-          ls -lah service
       - name: Prepare report dir on host (mounted into /reports)
         run: mkdir -p service/reports/ci
       - name: Run service tests
@@ -62,21 +54,6 @@ jobs:
               ls -lah /reports/ci || true
               exit $PYTEST_EXIT
             '
-      - name: Debug list
-        if: always()
-        run: |
-          echo "Looking for service/reports/ci/coverage.xml in $(pwd)"
-          ls -lah service/reports || true
-          ls -lah service/reports/ci || true
-          test -f service/reports/ci/coverage.xml && echo "FOUND coverage.xml" || echo "NOT FOUND"
-      - name: Show workspace
-        run: |
-          echo "PWD=$(pwd)"
-          ls -lah service
-          ls -lah service/reports
-          ls -lah service/reports/ci
-      - name: Assert coverage.xml exists
-        run: test -f service/reports/ci/coverage.xml
       - name: Upload coverage xml
         uses: actions/upload-artifact@v4
         with:
