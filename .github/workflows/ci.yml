@@ -61,6 +61,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: coverage-xml
-          path: ${{ github.workspace }}/reports/ci/coverage.xml
+          path: service/reports/ci/coverage.xml
           if-no-files-found: error
 
