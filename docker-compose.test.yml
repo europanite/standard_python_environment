@@ -15,7 +15,7 @@ services:
     tty: false
     restart: no
     image: local/service-test:ci
-    command: pytest -q
+    command: pytest -q --cov=/app --cov-report=xml:/reports/ci/coverage.xml
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
       - ./service/app:/app
