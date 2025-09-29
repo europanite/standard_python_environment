@@ -42,7 +42,7 @@ jobs:
         run: |
           gunzip -c service-test.tar.gz | docker load
       - name: Prepare report dir on host
-        run: mkdir -p /reports/ci && chmod -R 777 /reports
+        run: mkdir -p /reports/ci && chmod -R 777 /reports/ci
       - name: Show workspace
         run: |
           echo "PWD=$(pwd)"
