@@ -23,10 +23,10 @@ services:
       - ./service/workspace:/workspace
       - ./service/data:/data
       - ./service/root/jupyter:/root/.jupyter
-      - ./reports:/reports
+      - ./reports:/app/reports
     command: >
-        install -d -m 0777 /reports/ci /tmp/pytest-cache && 
+        install -d -m 0777 reports/ci /tmp/pytest-cache && 
         pytest -q --maxfail=1 
         --cov=/app --cov=/workspace 
-        --cov-report=xml:/reports/ci/coverage.xml 
+        --cov-report=xml:reports/ci/coverage.xml 
         -o cache_dir=/tmp/pytest-cache 
