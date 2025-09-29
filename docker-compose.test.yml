@@ -9,7 +9,7 @@ services:
         HOST_USERNAME: ${HOST_USERNAME:-user}
         HOST_GROUPNAME: ${HOST_GROUPNAME:-group}
     environment:
-      - DISPLAY=${DISPLAY}
+      - JUPYTER_PLATFORM_DIRS=1
     ports:
       - 8888:8888
     tty: false
