@@ -25,9 +25,6 @@ services:
       - ./service/root/jupyter:/root/.jupyter
       - ./reports:/reports
     command: >
-      - bash
-      - -lc
-      - >
         install -d -m 0777 /reports/ci /tmp/pytest-cache &&
         pytest -q --maxfail=1 --disable-warnings
         --cov=/app/app
