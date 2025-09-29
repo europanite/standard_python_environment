@@ -5,7 +5,6 @@ on:
   pull_request:
     paths:
       - "service/**"
-      - ".github/workflows/lint.yml"
   schedule:
     - cron: '0 0 * * *'
 permissions:
@@ -15,7 +14,6 @@ jobs:
   lint:
     name: Python ${{ matrix.python-version }} • ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 20
     strategy:
       fail-fast: false
       matrix:
