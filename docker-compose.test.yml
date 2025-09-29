@@ -16,14 +16,6 @@ services:
     restart: no
     image: local/service-test:ci
     command: pytest -q
-    entrypoint: >
-      jupyter-lab
-      --allow-root
-      --ip=0.0.0.0
-      --port=8888
-      --no-browser
-      --NotebookApp.token=''
-      --notebook-dir=/workspace
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
       - ./service/app:/app
