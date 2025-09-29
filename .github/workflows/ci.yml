@@ -42,7 +42,7 @@ jobs:
         run: |
           gunzip -c service-test.tar.gz | docker load
       - name: Prepare report dir on host
-        run: mkdir -p reports/ci && chmod -R 777 reports
+        run: mkdir -p /reports/ci && chmod -R 777 /reports
       - name: Show workspace
         run: |
           echo "PWD=$(pwd)"
@@ -54,10 +54,10 @@ jobs:
       - name: Debug list
         if: always()
         run: |
-          echo "Looking for reports/ci/coverage.xml in $(pwd)"
-          ls -lah reports || true
-          ls -lah reports/ci || true
-          test -f reports/ci/coverage.xml && echo "FOUND coverage.xml" || echo "NOT FOUND"
+          echo "Looking for /reports/ci/coverage.xml in $(pwd)"
+          ls -lah /reports || true
+          ls -lah /reports/ci || true
+          test -f /reports/ci/coverage.xml && echo "FOUND coverage.xml" || echo "NOT FOUND"
       - name: Upload coverage xml
         uses: actions/upload-artifact@v4
         with:
