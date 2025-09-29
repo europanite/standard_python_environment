@@ -46,8 +46,17 @@ jobs:
       - name: Run service tests
         run: |
           docker compose -f docker-compose.test.yml run --rm   --entrypoint /bin/sh service_test -lc '
+              set -eux
+              install -d -m 0777 /reports/ci /tmp/pytest-cache
               python -m coverage run -m pytest -q --maxfail=1 -o cache_dir=/tmp/pytest-cache || PYTEST_EXIT=$?
             '
+      - name: Debug list
+        if: always()
+        run: |
+          echo "Looking for service/reports/ci/coverage.xml in $(pwd)"
+          ls -lah service/reports || true
+          ls -lah service/reports/ci || true
+          test -f service/reports/ci/coverage.xml && echo "FOUND coverage.xml" || echo "NOT FOUND"
       - name: Upload coverage xml
         uses: actions/upload-artifact@v4
         with:
