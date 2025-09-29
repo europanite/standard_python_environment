@@ -3,8 +3,6 @@ on:
   push:
   workflow_dispatch:
   pull_request:
-    paths:
-      - "service/**"
   schedule:
     - cron: '0 0 * * *'
 permissions:
