@@ -13,12 +13,10 @@ services:
       - COVERAGE_FILE=/tmp/.coverage
     ports:
       - 8888:8888
-    user: "0:0"
     tty: false
     restart: no
     image: local/service-test:ci
     volumes:
-      - /tmp/.X11-unix:/tmp/.X11-unix
       - ./service/app:/app
       - ./service/workspace:/workspace
       - ./service/data:/data
