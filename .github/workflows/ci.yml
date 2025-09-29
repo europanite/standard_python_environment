@@ -63,6 +63,8 @@ jobs:
         run: |
           echo "PWD=$(pwd)"
           ls -lah service
+          ls -lah service/reports
+          ls -lah service/reports/ci
       - name: Assert coverage.xml exists
         run: test -f service/reports/ci/coverage.xml
       - name: Upload coverage xml
