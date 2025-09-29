@@ -41,6 +41,8 @@ jobs:
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: ruff.sarif
+      - name: Prepare report dir
+        run: mkdir -p reports/lint
       - name: Upload coverage xml
         uses: actions/upload-artifact@v4
         with:
