@@ -41,8 +41,8 @@ jobs:
       - name: Load images
         run: |
           gunzip -c service-test.tar.gz | docker load
-      - name: Prepare report dir on host
-        run: mkdir -p ${{ github.workspace }}/reports/ci && chmod -R 777 ${{ github.workspace }}/reports/ci
+      - name: Prepare report dir on host (mounted into /reports)
+        run: mkdir -p service/reports/ci
       - name: Show workspace
         run: |
           echo "PWD=$(pwd)"
@@ -57,10 +57,12 @@ jobs:
           ls -lah service/reports || true
           ls -lah service/reports/ci || true
           test -f service/reports/ci/coverage.xml && echo "FOUND coverage.xml" || echo "NOT FOUND"
+      - name: Assert coverage.xml exists
+        run: test -f service/reports/ci/coverage.xml
       - name: Upload coverage xml
         uses: actions/upload-artifact@v4
         with:
           name: coverage-xml
-          path: service/reports/ci/coverage.xml
+          path: ${{ github.workspace }}/service/reports/ci/coverage.xml
           if-no-files-found: error
 
