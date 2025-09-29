@@ -49,11 +49,12 @@ jobs:
         run: |
           echo "PWD=$(pwd)"
           ls -lah service
+      - name: Prepare report dir on host (mounted into /reports)
+        run: mkdir -p service/reports/ci
       - name: Run service tests
         run: |
           docker compose -f docker-compose.test.yml run --rm   --entrypoint /bin/sh service_test -lc '
               set -eux
-              install -d -m 0777 /reports/ci /tmp/pytest-cache
               PYTEST_EXIT=0
               python -m coverage run -m pytest -q --maxfail=1 -o cache_dir=/tmp/pytest-cache || PYTEST_EXIT=$?
               echo "PYTEST_EXIT_CODE=$PYTEST_EXIT"
