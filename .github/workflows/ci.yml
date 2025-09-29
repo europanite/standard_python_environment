@@ -41,14 +41,26 @@ jobs:
       - name: Load images
         run: |
           gunzip -c service-test.tar.gz | docker load
+      - name: Show workspace
+        run: |
+          echo "PWD=$(pwd)"
+          ls -lah
+      - name: Show workspace
+        run: |
+          echo "PWD=$(pwd)"
+          ls -lah service
       - name: Prepare report dir on host (mounted into /reports)
         run: mkdir -p service/reports/ci
       - name: Run service tests
         run: |
           docker compose -f docker-compose.test.yml run --rm   --entrypoint /bin/sh service_test -lc '
               set -eux
-              install -d -m 0777 /reports/ci /tmp/pytest-cache
+              PYTEST_EXIT=0
               python -m coverage run -m pytest -q --maxfail=1 -o cache_dir=/tmp/pytest-cache || PYTEST_EXIT=$?
+              echo "PYTEST_EXIT_CODE=$PYTEST_EXIT"
+              python -m coverage xml -o /reports/ci/coverage.xml || true
+              ls -lah /reports/ci || true
+              exit $PYTEST_EXIT
             '
       - name: Debug list
         if: always()
@@ -57,10 +69,17 @@ jobs:
           ls -lah service/reports || true
           ls -lah service/reports/ci || true
           test -f service/reports/ci/coverage.xml && echo "FOUND coverage.xml" || echo "NOT FOUND"
+      - name: Show workspace
+        run: |
+          echo "PWD=$(pwd)"
+          ls -lah service
+          ls -lah service/reports
+          ls -lah service/reports/ci
+      - name: Assert coverage.xml exists
+        run: test -f service/reports/ci/coverage.xml
       - name: Upload coverage xml
         uses: actions/upload-artifact@v4
         with:
           name: coverage-xml
           path: service/reports/ci/coverage.xml
           if-no-files-found: error
-
