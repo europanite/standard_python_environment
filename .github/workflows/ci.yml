@@ -44,6 +44,8 @@ jobs:
       - name: Run service tests
         run: |
           docker compose -f docker-compose.test.yml run --rm service_test
+      - name: Prepare report dir
+        run: mkdir -p /reports/ci
       - name: Upload coverage xml
         uses: actions/upload-artifact@v4
         with:
