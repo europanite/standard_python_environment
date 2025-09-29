@@ -45,8 +45,3 @@ docker-compose.override.yml
 .eggs/
 dist/
 build/
-
-# Docker files
-**/Dockerfile
-docker-compose.yml
-docker-compose.override.yml

@@ -1,6 +1,2 @@
 # write required libraries.
 jupyterlab==4.4.7
-pytest==8.4.2
-ruff==0.13.1
-black==25.9.0
-black[jupyter]

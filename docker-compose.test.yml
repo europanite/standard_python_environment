@@ -1,0 +1,24 @@
+services:
+  service_test:
+    build:
+      context: ./service/
+      dockerfile: Dockerfile.test
+      args:
+        HOST_UID: ${HOST_UID:-1000}
+        HOST_GID: ${HOST_GID:-1000}
+        HOST_USERNAME: ${HOST_USERNAME:-user}
+        HOST_GROUPNAME: ${HOST_GROUPNAME:-group}
+    environment:
+      - DISPLAY=${DISPLAY}
+    ports:
+      - 8888:8888
+    tty: false
+    restart: no
+    image: local/service-test:ci
+    command: pytest -q
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - ./service/app:/app
+      - ./service/data:/data
+      - ./service/root/jupyter:/root/.jupyter
+      - ./service/workspace:/workspace

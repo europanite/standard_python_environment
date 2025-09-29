@@ -1,0 +1,40 @@
+FROM python:3.12-bookworm
+
+# Faster Python stdout/stderr & safer pip defaults
+ENV PYTHONUNBUFFERED=1
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+# Install dependencies (add more as needed)
+RUN set -eux; \
+    apt-get update; \
+    apt-get install -y --no-install-recommends \
+        apt-utils \
+        build-essential \
+        ca-certificates \
+        x11-apps; \
+    rm -rf /var/lib/apt/lists/*
+
+# Python dependencies  
+WORKDIR /root
+COPY requirements.txt requirements.test.txt ./
+RUN python -m pip install --upgrade pip setuptools wheel
+RUN pip install --no-cache-dir -r requirements.txt -r requirements.test.txt
+
+# receive environment values
+ARG HOST_UID=1000
+ARG HOST_GID=1000
+ARG HOST_USERNAME=user
+ARG HOST_GROUPNAME=group
+
+# Create user/group
+RUN groupadd -g $HOST_GID $HOST_GROUPNAME && \
+    useradd -m -s /bin/bash -u $HOST_UID -g $HOST_GID $HOST_USERNAME
+
+# App workspace
+WORKDIR /app
+COPY . /app
+
+# User
+USER $HOST_USERNAME
+
