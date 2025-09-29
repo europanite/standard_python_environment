@@ -23,7 +23,3 @@ Fork the repository and create a new branch:
    ```bash
    git checkout -b feature/your-feature-name
    ```
-or,
-   ```bash
-   git checkout -b feature/your-feature-name
-   ```

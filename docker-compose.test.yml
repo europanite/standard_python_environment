@@ -1,8 +1,8 @@
 services:
   service_test:
-    container_name: service_test
     build:
       context: ./service/
+      dockerfile: Dockerfile.test
       args:
         HOST_UID: ${HOST_UID:-1000}
         HOST_GID: ${HOST_GID:-1000}
@@ -12,8 +12,10 @@ services:
       - DISPLAY=${DISPLAY}
     ports:
       - 8888:8888
-    tty: true
-    restart: unless-stopped
+    tty: false
+    restart: no
+    image: local/service-test:ci
+    command: pytest -q
     entrypoint: >
       jupyter-lab
       --allow-root

@@ -1,5 +1,5 @@
 title: "standard_python_environment"
-description: "Python environment built with **Docker Compose"
+description: "Python environment built with Docker Compose"
 baseurl: "/standard_python_environment"
 url: "https://europanite.github.io"
 theme: minima

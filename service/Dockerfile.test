@@ -45,4 +45,4 @@ COPY . /app
 USER $HOST_USERNAME
 
 # Default command can be overridden by docker compose
-CMD ["pytest","-q","--maxfail=1","--disable-warnings"]
+CMD ["pytest","-q"]
