@@ -10,6 +10,7 @@ services:
         HOST_GROUPNAME: ${HOST_GROUPNAME:-group}
     environment:
       - JUPYTER_PLATFORM_DIRS=1
+      - COVERAGE_FILE=/tmp/.coverage
     ports:
       - 8888:8888
     tty: false
@@ -21,4 +22,4 @@ services:
       - ./service/app:/app
       - ./service/data:/data
       - ./service/root/jupyter:/root/.jupyter
-      - ./reports:/app/reports
+      - ./reports:/reports
