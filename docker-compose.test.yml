@@ -27,6 +27,6 @@ services:
     command: >
         install -d -m 0777 /reports/ci /tmp/pytest-cache &&
         pytest -q --maxfail=1 --disable-warnings
-        --cov=/app/app
+        --cov=/app --cov=/workspace
         --cov-report=xml:/reports/ci/coverage.xml
         -o cache_dir=/tmp/pytest-cache
