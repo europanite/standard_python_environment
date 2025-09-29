@@ -41,9 +41,3 @@ jobs:
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: ruff.sarif
-      - name: Upload coverage xml
-        uses: actions/upload-artifact@v4
-        with:
-          name: coverage-xml-${{ matrix.os }}-py${{ matrix.python-version }}
-          path: coverage.xml
-          if-no-files-found: ignore
