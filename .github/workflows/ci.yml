@@ -53,10 +53,10 @@ jobs:
       - name: Debug list
         if: always()
         run: |
-          echo "Looking for ${{ github.workspace }}/reports/ci/coverage.xml in $(pwd)"
-          ls -lah ${{ github.workspace }}/reports || true
-          ls -lah ${{ github.workspace }}/reports/ci || true
-          test -f ${{ github.workspace }}/reports/ci/coverage.xml && echo "FOUND coverage.xml" || echo "NOT FOUND"
+          echo "Looking for service/reports/ci/coverage.xml in $(pwd)"
+          ls -lah service/reports || true
+          ls -lah service/reports/ci || true
+          test -f service/reports/ci/coverage.xml && echo "FOUND coverage.xml" || echo "NOT FOUND"
       - name: Upload coverage xml
         uses: actions/upload-artifact@v4
         with:
