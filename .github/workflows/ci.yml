@@ -41,15 +41,27 @@ jobs:
       - name: Load images
         run: |
           gunzip -c service-test.tar.gz | docker load
+      - name: Show workspace
+        run: |
+          echo "PWD=$(pwd)"
+          echo "GITHUB_WORKSPACE=${GITHUB_WORKSPACE}"
+          ls -lah
       - name: Prepare report dir on host
         run: mkdir -p reports/ci && chmod -R 777 reports
       - name: Run service tests
         run: |
           docker compose -f docker-compose.test.yml run --rm service_test
+      - name: Debug list
+        if: always()
+        run: |
+          echo "Looking for reports/ci/coverage.xml in $(pwd)"
+          ls -lah reports || true
+          ls -lah reports/ci || true
+          test -f reports/ci/coverage.xml && echo "FOUND coverage.xml" || echo "NOT FOUND"
       - name: Upload coverage xml
         uses: actions/upload-artifact@v4
         with:
           name: coverage-xml
-          path: reports/ci/coverage.xml
+          path: ${{ github.workspace }}/reports/ci/coverage.xml
           if-no-files-found: error
 
