@@ -16,4 +16,5 @@ services:
       - ./service/app:/app
       - ./service/root/jupyter:/root/.jupyter
       - ./service/reports:/reports
+      - ./service/pytest.ini:/app/pytest.ini:ro
       - ./service/data:/data
