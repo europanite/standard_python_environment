@@ -14,7 +14,6 @@ services:
     image: local/service-test:ci
     volumes:
       - ./service/app:/app
-      - ./service/workspace:/workspace
       - ./service/root/jupyter:/root/.jupyter
       - ./service/reports:/reports
-
+      - ./service/data:/data
