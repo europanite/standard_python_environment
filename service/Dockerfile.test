@@ -23,7 +23,6 @@ RUN groupadd -g $HOST_GID $HOST_GROUPNAME && \
 
 # App workspace
 WORKDIR /app
-COPY . /app
 
 # User
 USER $HOST_USERNAME
