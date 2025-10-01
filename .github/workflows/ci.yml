@@ -47,6 +47,7 @@ jobs:
         run: |
           docker compose -f docker-compose.test.yml run --rm   --entrypoint /bin/sh service_test -lc '
               python -m coverage run -m pytest
+              python -m coverage xml -o /reports/ci/coverage.xml
             '
       - name: Upload coverage xml
         uses: actions/upload-artifact@v4
