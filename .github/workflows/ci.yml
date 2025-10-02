@@ -60,8 +60,8 @@ jobs:
           HOST_UID: "1000"
           HOST_GID: "1000"
           DISPLAY: ":1"
-          HOST_USERNAME: ${{ secrets.HOST_USERNAME }}
-          HOST_GROUPNAME: ${{ secrets.HOST_GROUPNAME }}
+          HOST_USERNAME: user
+          HOST_GROUPNAME: group
         if: always()
         run: |
           docker compose  down -v --remove-orphans
