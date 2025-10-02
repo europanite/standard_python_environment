@@ -54,3 +54,14 @@ jobs:
           name: coverage-xml
           path: service/reports/ci/coverage.xml
           if-no-files-found: error
+      - name: Cleanup
+        env:
+          DOCKER_BUILDKIT: 1
+          HOST_UID: "1000"
+          HOST_GID: "1000"
+          DISPLAY: ":1"
+          HOST_USERNAME: ${{ secrets.HOST_USERNAME }}
+          HOST_GROUPNAME: ${{ secrets.HOST_GROUPNAME }}
+        if: always()
+        run: |
+          docker compose  down -v --remove-orphans
