@@ -18,3 +18,4 @@ services:
       - ./service/reports:/reports
       - ./service/pytest.ini:/app/pytest.ini:ro
       - ./service/data:/data
+    command: ["pytest", "-q"]
