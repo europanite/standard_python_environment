@@ -31,7 +31,11 @@ jobs:
           name: test-images
           path: service-test.tar.gz
   service-tests:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ ubuntu-latest, windows-latest ]
     needs: build-test-images
     steps:
       - uses: actions/checkout@v4
