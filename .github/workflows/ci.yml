@@ -44,7 +44,7 @@ jobs:
           name: test-images
       - name: Load images
         run: |
-          gunzip -c service-test.tar.gz | docker load
+          gunzip -c service-test.tar.gz > docker load
       - name: Prepare report dir on host (mounted into /reports)
         run: mkdir -p service/reports/ci
       - name: Run service tests
