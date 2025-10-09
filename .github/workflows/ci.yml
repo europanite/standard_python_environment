@@ -10,7 +10,11 @@ concurrency:
   cancel-in-progress: true
 jobs:
   build-test-images:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ ubuntu-latest, windows-latest ]
     steps:
       - uses: actions/checkout@v4
       - name: Set up Docker Buildx
