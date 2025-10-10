@@ -35,8 +35,9 @@ A standard **Python** environment built with **Docker Compose**.
 
 ## Getting Started
 
+### Linux
+
 ```bash
-# Linux
 # Clone this repository
 git clone https://github.com/europanite/standard_python_environment.git
 cd standard_python_environment
@@ -52,8 +53,9 @@ docker compose exec service bash
 
 ```
 
+### Windows
+
 ```bash
-# Windows
 # Clone this repository
 git clone https://github.com/europanite/standard_python_environment.git
 cd standard_python_environment
