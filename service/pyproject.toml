@@ -20,7 +20,9 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
+name = "standard_python_environment"
 version = "0.0.0"
+requires-python = ">=3.9"
 
 [tool.setuptools]
 packages = ["app", "data"]
