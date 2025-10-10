@@ -1,8 +1,12 @@
 name: Pytest (Ubuntu & Windows)
 on:
   push:
-    branches: [ main ]
+  workflow_dispatch:
   pull_request:
+  schedule:
+    - cron: '0 0 * * *'
+permissions:
+  security-events: write
 jobs:
   tests:
     name: pytest - ${{ matrix.os }} - py${{ matrix.python-version }}
