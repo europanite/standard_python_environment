@@ -34,17 +34,24 @@ jobs:
         run: |
           set -eux
           python -m pip install -U pip
-          pip install -r service/requirements.txt
-          pip install -r service/requirements.test.txt
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          if [ -f requirements-dev.txt ]; then pip install -r requirements-dev.txt; fi
+          pip install pytest coverage nbformat nbclient
+          if [ -f service/pyproject.toml ] || [ -f service/setup.cfg ] || [ -f service/setup.py ]; then
+            pip install -e service
+          fi
       - name: Install deps (Windows)
         if: matrix.os == 'windows-latest'
         shell: pwsh
         run: |
           $ErrorActionPreference = "Stop"
           python -m pip install -U pip
-          pip install -r service/requirements.txt
-          pip install -r service/requirements.test.txt
+          if (Test-Path requirements.txt) { pip install -r requirements.txt }
+          if (Test-Path requirements-dev.txt) { pip install -r requirements-dev.txt }
           pip install pytest coverage nbformat nbclient
+          if (Test-Path service/pyproject.toml -or Test-Path service/setup.cfg -or Test-Path service/setup.py) {
+            pip install -e service
+          }
       - name: Show versions
         shell: bash
         run: |
