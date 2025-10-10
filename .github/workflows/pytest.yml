@@ -1,0 +1,76 @@
+name: Pytest
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  tests:
+    name: pytest - ${{ matrix.os }} - py${{ matrix.python-version }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ ubuntu-latest, windows-latest ]
+        python-version: [ "3.9", "3.10", "3.11", "3.12", "3.13" ]
+    env:
+      PYTHONUTF8: "1"
+      PYTHONPATH: ${{ github.workspace }}/service
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: "pip"
+
+      - name: Install deps (Ubuntu)
+        if: matrix.os == 'ubuntu-latest'
+        shell: bash
+        run: |
+          set -eux
+          python -m pip install -U pip
+          pip install -r service/requirements.test.txt
+          if [ -f service/pyproject.toml ] || [ -f service/setup.cfg ] || [ -f service/setup.py ]; then
+            pip install -e service
+          fi
+      - name: Install deps (Windows)
+        if: matrix.os == 'windows-latest'
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          python -m pip install -U pip
+          pip install -r service/requirements.test.txt
+          $hasPythonProject = (Test-Path -Path 'service/pyproject.toml') -or
+                            (Test-Path -Path 'service/setup.cfg') -or
+                            (Test-Path -Path 'service/setup.py')
+          if ($hasPythonProject) {
+            python -m pip install -e service
+          } else {
+            Write-Host 'service packaging files not found; skipping'
+          }
+      - name: Show versions
+        shell: bash
+        run: |
+          python --version
+          pip --version
+          pytest --version
+          python -c "import sys,platform,os;print(platform.platform());print(sys.version);print('PYTHONPATH=',os.environ.get('PYTHONPATH'))"
+      - name: Run tests with coverage
+        shell: bash
+        run: |
+          python -m coverage run -m pytest -q
+          python -m coverage xml -o coverage.xml
+      - name: Upload coverage.xml
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-${{ matrix.os }}-py${{ matrix.python-version }}
+          path: coverage.xml
+          if-no-files-found: error
+
