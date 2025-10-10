@@ -48,8 +48,13 @@ jobs:
           $ErrorActionPreference = "Stop"
           python -m pip install -U pip
           pip install -r service/requirements.test.txt
-          if (Test-Path service/pyproject.toml -or Test-Path service/setup.cfg -or Test-Path service/setup.py) {
-            pip install -e service
+          $hasPythonProject = (Test-Path -Path 'service/pyproject.toml') -or
+                            (Test-Path -Path 'service/setup.cfg') -or
+                            (Test-Path -Path 'service/setup.py')
+          if ($hasPythonProject) {
+            python -m pip install -e service
+          } else {
+            Write-Host 'service packaging files not found; skipping'
           }
       - name: Show versions
         shell: bash
