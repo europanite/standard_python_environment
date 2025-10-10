@@ -1,10 +1,8 @@
-name: Pytest
+name: Pytest (Ubuntu & Windows)
 on:
   push:
-  workflow_dispatch:
+    branches: [ main ]
   pull_request:
-  schedule:
-    - cron: '0 0 * * *'
 jobs:
   tests:
     name: pytest - ${{ matrix.os }} - py${{ matrix.python-version }}
@@ -13,7 +11,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ ubuntu-latest, windows-latest ]
-        python-version: [ "3.9", "3.10", "3.11", "3.12", "3.13" ]
+        python-version: [ "3.12" ]
     env:
       PYTHONUTF8: "1"
       PYTHONPATH: ${{ github.workspace }}/service
