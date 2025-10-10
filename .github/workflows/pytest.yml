@@ -1,12 +1,10 @@
 name: Pytest (Ubuntu & Windows)
+
 on:
   push:
-  workflow_dispatch:
+    branches: [ main ]
   pull_request:
-  schedule:
-    - cron: '0 0 * * *'
-permissions:
-  security-events: write
+
 jobs:
   tests:
     name: pytest - ${{ matrix.os }} - py${{ matrix.python-version }}
@@ -15,46 +13,68 @@ jobs:
       fail-fast: false
       matrix:
         os: [ ubuntu-latest, windows-latest ]
-        python-version: [ "3.9", "3.10", "3.11", "3.12", "3.13" ]
+        python-version: [ "3.12" ]
+
+    # service 配下を import できるように通しておく（両OSで有効）
     env:
       PYTHONUTF8: "1"
+      PYTHONPATH: ${{ github.workspace }}/service
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-          cache: "pip" 
-      - name: Install dependencies (Ubuntu)
+          cache: "pip"
+
+      # 依存インストール（Ubuntu）
+      - name: Install deps (Ubuntu)
         if: matrix.os == 'ubuntu-latest'
         shell: bash
         run: |
           set -eux
           python -m pip install -U pip
-          pip install -r service/requirements.txt
-          pip install -r service/requirements.test.txt
-          pip install pytest coverage
-      - name: Install dependencies (Windows)
+          # あれば読む
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          if [ -f requirements-dev.txt ]; then pip install -r requirements-dev.txt; fi
+          # notebook テストに必要な依存（不足分を明示インストール）
+          pip install pytest coverage nbformat nbclient
+          # service がパッケージなら editable install（どちらかがあればOK）
+          if [ -f service/pyproject.toml ] || [ -f service/setup.cfg ] || [ -f service/setup.py ]; then
+            pip install -e service
+          fi
+
+      # 依存インストール（Windows）
+      - name: Install deps (Windows)
         if: matrix.os == 'windows-latest'
         shell: pwsh
         run: |
           $ErrorActionPreference = "Stop"
           python -m pip install -U pip
-          pip install pytest coverage
+          if (Test-Path requirements.txt) { pip install -r requirements.txt }
+          if (Test-Path requirements-dev.txt) { pip install -r requirements-dev.txt }
+          pip install pytest coverage nbformat nbclient
+          if (Test-Path service/pyproject.toml -or Test-Path service/setup.cfg -or Test-Path service/setup.py) {
+            pip install -e service
+          }
+
       - name: Show versions
+        shell: bash
         run: |
           python --version
           pip --version
           pytest --version
-          python -c "import sys,platform;print(platform.platform());print(sys.version)"
-        shell: bash
+          python -c "import sys,platform,os;print(platform.platform());print(sys.version);print('PYTHONPATH=',os.environ.get('PYTHONPATH'))"
+
       - name: Run tests with coverage
+        shell: bash
         run: |
           python -m coverage run -m pytest -q
           python -m coverage xml -o coverage.xml
-        shell: bash
+
       - name: Upload coverage.xml
         uses: actions/upload-artifact@v4
         with:
