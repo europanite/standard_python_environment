@@ -1,10 +1,8 @@
 name: Pytest (Ubuntu & Windows)
-
 on:
   push:
     branches: [ main ]
   pull_request:
-
 jobs:
   tests:
     name: pytest - ${{ matrix.os }} - py${{ matrix.python-version }}
@@ -14,8 +12,6 @@ jobs:
       matrix:
         os: [ ubuntu-latest, windows-latest ]
         python-version: [ "3.12" ]
-
-    # service 配下を import できるように通しておく（両OSで有効）
     env:
       PYTHONUTF8: "1"
       PYTHONPATH: ${{ github.workspace }}/service
@@ -30,24 +26,18 @@ jobs:
           python-version: ${{ matrix.python-version }}
           cache: "pip"
 
-      # 依存インストール（Ubuntu）
       - name: Install deps (Ubuntu)
         if: matrix.os == 'ubuntu-latest'
         shell: bash
         run: |
           set -eux
           python -m pip install -U pip
-          # あれば読む
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
           if [ -f requirements-dev.txt ]; then pip install -r requirements-dev.txt; fi
-          # notebook テストに必要な依存（不足分を明示インストール）
           pip install pytest coverage nbformat nbclient
-          # service がパッケージなら editable install（どちらかがあればOK）
           if [ -f service/pyproject.toml ] || [ -f service/setup.cfg ] || [ -f service/setup.py ]; then
             pip install -e service
           fi
-
-      # 依存インストール（Windows）
       - name: Install deps (Windows)
         if: matrix.os == 'windows-latest'
         shell: pwsh
@@ -60,7 +50,6 @@ jobs:
           if (Test-Path service/pyproject.toml -or Test-Path service/setup.cfg -or Test-Path service/setup.py) {
             pip install -e service
           }
-
       - name: Show versions
         shell: bash
         run: |
@@ -68,16 +57,15 @@ jobs:
           pip --version
           pytest --version
           python -c "import sys,platform,os;print(platform.platform());print(sys.version);print('PYTHONPATH=',os.environ.get('PYTHONPATH'))"
-
       - name: Run tests with coverage
         shell: bash
         run: |
           python -m coverage run -m pytest -q
           python -m coverage xml -o coverage.xml
-
       - name: Upload coverage.xml
         uses: actions/upload-artifact@v4
         with:
           name: coverage-${{ matrix.os }}-py${{ matrix.python-version }}
           path: coverage.xml
           if-no-files-found: error
+
