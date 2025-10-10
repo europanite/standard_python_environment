@@ -1,0 +1,59 @@
+name: Pytest (Ubuntu & Windows)
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+jobs:
+  tests:
+    name: pytest - ${{ matrix.os }} - py${{ matrix.python-version }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ ubuntu-latest, windows-latest ]
+        python-version: [ "3.9", "3.10", "3.11", "3.12", "3.13" ]
+    env:
+      PYTHONUTF8: "1"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: "pip" 
+      - name: Install dependencies (Ubuntu)
+        if: matrix.os == 'ubuntu-latest'
+        shell: bash
+        run: |
+          set -eux
+          python -m pip install -U pip
+          pip install -r service/requirements.txt
+          pip install -r service/requirements.test.txt
+          pip install pytest coverage
+      - name: Install dependencies (Windows)
+        if: matrix.os == 'windows-latest'
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          python -m pip install -U pip
+          pip install pytest coverage
+      - name: Show versions
+        run: |
+          python --version
+          pip --version
+          pytest --version
+          python -c "import sys,platform;print(platform.platform());print(sys.version)"
+        shell: bash
+      - name: Run tests with coverage
+        run: |
+          python -m coverage run -m pytest -q
+          python -m coverage xml -o coverage.xml
+        shell: bash
+      - name: Upload coverage.xml
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-${{ matrix.os }}-py${{ matrix.python-version }}
+          path: coverage.xml
+          if-no-files-found: error
