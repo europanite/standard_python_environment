@@ -36,7 +36,7 @@ A standard **Python** environment built with **Docker Compose**.
 ## Getting Started
 
 ```bash
-
+# Linux
 # Clone this repository
 git clone https://github.com/europanite/standard_python_environment.git
 cd standard_python_environment
@@ -51,6 +51,20 @@ docker compose up -d
 docker compose exec service bash
 
 ```
+
+```bash
+# Windows
+# Clone this repository
+git clone https://github.com/europanite/standard_python_environment.git
+cd standard_python_environment
+
+# Build and run
+docker compose build
+docker compose up -d
+docker compose exec service bash
+
+```
+
 Now you are inside the Python container 🎉
 
 If you use JupyterLab, just you need to access http://localhost:8888
