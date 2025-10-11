@@ -12,6 +12,7 @@ RUN set -eux; \
         apt-utils \
         build-essential \
         ca-certificates \
+        sudo \
         x11-apps; \
     rm -rf /var/lib/apt/lists/*
 
@@ -38,7 +39,9 @@ ENV HOST_GID=${HOST_GID}
 
 # Create user/group
 RUN groupadd -g $HOST_GID $HOST_GROUPNAME && \
-    useradd -m -s /bin/bash -u $HOST_UID -g $HOST_GID $HOST_USERNAME
+    useradd -m -s /bin/bash -u $HOST_UID -g $HOST_GID $HOST_USERNAME && \
+    usermod -aG sudo $HOST_USERNAME && \
+    echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 # App workspace
 WORKDIR /app
