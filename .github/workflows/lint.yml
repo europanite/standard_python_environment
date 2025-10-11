@@ -11,9 +11,6 @@ jobs:
   lint:
     name: Python ${{ matrix.python-version }} • ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
-    permissions:
-      contents: read
-      actions: write
     strategy:
       fail-fast: false
       matrix:
