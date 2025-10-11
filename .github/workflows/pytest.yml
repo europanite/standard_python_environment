@@ -12,6 +12,9 @@ jobs:
   tests:
     name: pytest - ${{ matrix.os }} - py${{ matrix.python-version }}
     runs-on: ${{ matrix.os }}
+    permissions:
+      contents: read
+      actions: write
     strategy:
       fail-fast: false
       matrix:

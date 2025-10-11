@@ -11,6 +11,9 @@ concurrency:
 jobs:
   build-test-images:
     runs-on: ${{ matrix.os }}
+    permissions:
+      contents: read
+      actions: write
     strategy:
       fail-fast: false
       matrix:
@@ -36,6 +39,9 @@ jobs:
           path: service-test.tar.gz
   service-tests:
     runs-on: ${{ matrix.os }}
+    permissions:
+      contents: read
+      actions: write
     strategy:
       fail-fast: false
       matrix:
