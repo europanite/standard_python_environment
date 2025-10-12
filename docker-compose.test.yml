@@ -6,6 +6,7 @@ services:
     environment:
       - JUPYTER_PLATFORM_DIRS=1
       - COVERAGE_FILE=/tmp/.coverage
+      - PYTHONPATH=/
     ports:
       - 8888:8888
     user: "0:0"
@@ -14,8 +15,8 @@ services:
     image: local/service-test:ci
     volumes:
       - ./service/app:/app
-      - ./service/root/jupyter:/root/.jupyter
-      - ./service/reports:/reports
-      - ./service/pytest.ini:/app/pytest.ini:ro
       - ./service/data:/data
+      - ./service/tests:/tests
+      - ./service/reports:/reports
+      - ./service/root/jupyter:/root/.jupyter
     command: ["pytest", "-q"]

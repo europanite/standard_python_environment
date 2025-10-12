@@ -1,4 +1,3 @@
-# service/tests/test_notebook.py
 from pathlib import Path
 
 import nbformat
@@ -6,7 +5,7 @@ from nbclient import NotebookClient
 
 
 def test_workspace_notebook_runs_and_prints_hello():
-    nb_path = Path(__file__).resolve().parents[1] / "main.ipynb"
+    nb_path = Path(__file__).resolve().parents[1] / "app" / "main.ipynb"
     assert nb_path.exists(), f"Notebook not found: {nb_path}"
 
     nb = nbformat.read(str(nb_path), as_version=4)
