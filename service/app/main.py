@@ -1,5 +1,7 @@
-import os
 
 # write your code.
-print("Hello World!")
-print("abspath:", os.path.abspath(__file__))
+def run():
+    print("Hello World!")
+
+if __name__ == "__main__":
+    run()

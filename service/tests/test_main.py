@@ -1,19 +1,13 @@
 import csv
 import os
-import subprocess
-import sys
+
+from app.main import run
 
 
-def test_main_script_output():
-    result = subprocess.run(
-        [sys.executable, os.path.join(os.path.dirname(__file__), "..","app", "main.py")],
-        capture_output=True,
-        text=True,
-        check=True
-    )
-    output = result.stdout
+def test_run(capfd):
+    run()
+    output, _ = capfd.readouterr()
     assert "Hello World!" in output
-    assert "abspath:" in output
 
 
 def test_sample_csv_content():
