@@ -6,7 +6,7 @@ import sys
 
 def test_main_script_output():
     result = subprocess.run(
-        [sys.executable, os.path.join(os.path.dirname(__file__), "..", "main.py")],
+        [sys.executable, os.path.join("/app","main.py")],
         capture_output=True,
         text=True,
         check=True
@@ -17,7 +17,7 @@ def test_main_script_output():
 
 
 def test_sample_csv_content():
-    csv_path = os.path.join(os.path.dirname(__file__), "..", "..", "data", "sample.csv")
+    csv_path = os.path.join("/data", "sample.csv")
     with open(csv_path, newline="") as f:
         reader = csv.DictReader(f)
         rows = list(reader)
