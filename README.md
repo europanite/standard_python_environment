@@ -73,5 +73,12 @@ If you use JupyterLab, just you need to access http://localhost:8888
 
 ---
 
+### Test
+
+```bash
+docker compose -f docker-compose.test.yml run --rm --entrypoint /bin/sh service_test -lc '
+  pytest'
+```
+
 ## License
 - Apache License 2.0
