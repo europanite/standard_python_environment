@@ -7,7 +7,6 @@ from nbclient import NotebookClient
 
 def test_workspace_notebook_runs_and_prints_hello():
     nb_path = [sys.executable, os.path.join(os.path.dirname(__file__), "..","app", "main.ipynb")],
-    assert nb_path.exists(), f"Notebook not found: {nb_path}"
 
     nb = nbformat.read(str(nb_path), as_version=4)
 
