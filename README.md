@@ -55,7 +55,7 @@ docker compose exec service bash
 
 ### Windows
 
-```bash
+```powershell
 # Clone this repository
 git clone https://github.com/europanite/standard_python_environment.git
 cd standard_python_environment
