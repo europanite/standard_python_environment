@@ -7,7 +7,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 # Python dependencies  
 WORKDIR /root
-COPY requirements.txt requirements.test.txt ./
+COPY requirements.txt requirements.test.txt pytest.ini pyproject.toml ./
 RUN python -m pip install --upgrade pip setuptools wheel
 RUN pip install --no-cache-dir -r requirements.txt -r requirements.test.txt
 
@@ -20,9 +20,6 @@ ARG HOST_GROUPNAME=group
 # Create user/group
 RUN groupadd -g $HOST_GID $HOST_GROUPNAME && \
     useradd -m -s /bin/bash -u $HOST_UID -g $HOST_GID $HOST_USERNAME
-
-# App workspace
-WORKDIR /app
 
 # User
 USER $HOST_USERNAME
