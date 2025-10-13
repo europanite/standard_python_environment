@@ -7,6 +7,7 @@ services:
       - PYTHONPATH=/
     ports:
       - 8888:8888
+    user: "0:0"
     tty: false
     restart: no
     image: local/service-test:ci
