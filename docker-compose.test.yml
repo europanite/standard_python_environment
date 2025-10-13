@@ -5,7 +5,7 @@ services:
       dockerfile: Dockerfile.test
     environment:
       - JUPYTER_PLATFORM_DIRS=1
-      - COVERAGE_FILE=/tmp/.coverage
+      - PYTHONPATH=/
     ports:
       - 8888:8888
     user: "0:0"
