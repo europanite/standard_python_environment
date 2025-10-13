@@ -4,7 +4,6 @@ services:
       context: ./service/
       dockerfile: Dockerfile.test
     environment:
-      - JUPYTER_PLATFORM_DIRS=1
       - PYTHONPATH=/
     ports:
       - 8888:8888
