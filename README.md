@@ -28,8 +28,7 @@ A standard **Python** environment built with **Docker Compose**.
 
 ## Prerequisites
 
-- Docker (Docker Desktop, etc.)
-- Docker Compose v2 (`docker compose` command available)
+- [Docker Compose](https://docs.docker.com/compose/)
 
 ---
 
