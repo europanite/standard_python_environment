@@ -8,9 +8,7 @@
 
 A standard **Python** environment built with **Docker Compose**.
 
-!["console"](./assets/images/console.png)
-
-!["jupyterlab"](./assets/images/jupyterlab.png)
+!["image"](./assets/images/image.png)
 
 ---
 
@@ -49,7 +47,6 @@ export HOST_GID=$(id -g)
 docker compose build
 docker compose up -d
 docker compose exec service bash
-
 ```
 
 ### Windows
@@ -63,7 +60,6 @@ cd standard_python_environment
 docker compose build
 docker compose up -d
 docker compose exec service bash
-
 ```
 
 Now you are inside the Python container 🎉
@@ -75,11 +71,19 @@ If you use JupyterLab, just you need to access http://localhost:8888
 ### Test
 
 ```bash
+# pytest
 docker compose \
 -f docker-compose.test.yml run \
---rm --entrypoint \
-/bin/sh service_test -lc ' \
-pytest'
+--rm \
+--entrypoint /bin/sh service_test \
+-lc 'pytest'
+
+# Lint
+docker compose \
+-f docker-compose.test.yml run \
+--rm \
+--entrypoint /bin/sh service_test \
+-lc 'ruff check /app /tests'
 ```
 
 ## License
