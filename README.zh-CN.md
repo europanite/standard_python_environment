@@ -1,6 +1,5 @@
 # [Standard Python Environment](https://github.com/europanite/standard_python_environment "Standard Python Environment")
 
-[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Python](https://img.shields.io/badge/python-3.9|%203.10%20|%203.11|%203.12|%203.13-blue)](https://www.python.org/)
 ![OS](https://img.shields.io/badge/OS-Linux%20%7C%20macOS%20%7C%20Windows-blue)
 
@@ -9,10 +8,6 @@
 [![Pytest](https://github.com/europanite/standard_python_environment/actions/workflows/pytest.yml/badge.svg)](https://github.com/europanite/standard_python_environment/actions/workflows/pytest.yml)
 [![pages-build-deployment](https://github.com/europanite/standard_python_environment/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/europanite/standard_python_environment/actions/workflows/pages/pages-build-deployment)
 [![CodeQL Advanced](https://github.com/europanite/standard_python_environment/actions/workflows/codeql.yml/badge.svg)](https://github.com/europanite/standard_python_environment/actions/workflows/codeql.yml)
-
-![Python](https://img.shields.io/badge/python-3670A0?logo=python&logoColor=ffdd54)
-![Pytest](https://img.shields.io/badge/pytest-%23ffffff.svg?logo=pytest&logoColor=2f9fe3)
-![Jupyter Notebook](https://img.shields.io/badge/jupyter-%23FA0F00.svg?logo=jupyter&logoColor=white)
 
 <p align="right">
   <a href="./README.md">🇺🇸 English</a> |
@@ -26,31 +21,31 @@
   <a href="./README.fr.md">🇫🇷 Français</a>
 </p>
 
-A standard **Python** environment built with **Docker Compose**.
+一个使用 **Docker Compose** 构建的标准 **Python** 环境。
 
 !["image"](./assets/images/image.png)
 
 ---
 
-## Features
+## 功能特性
 
-- **Reproducibility**: Dependencies are locked inside the container
-- **Simplicity**: Run with just docker compose commands
-- **Portability**: Works on Linux, macOS, and Windows
-- **pip ready**: Install and manage Python packages easily
-- **JupyterLab support**: (Optional) Run notebooks inside the container
-- **X11 forwarding**: (Optional) Run GUI-based Python apps
+- **可复现性**：依赖项锁定在容器内部
+- **简单性**：只需使用 docker compose 命令即可运行
+- **可移植性**：可在 Linux、macOS 和 Windows 上运行
+- **pip ready**：轻松安装和管理 Python 包
+- **JupyterLab support**：（可选）在容器内运行 notebooks
+- **X11 forwarding**：（可选）运行基于 GUI 的 Python 应用
 
 ---
 
 
-## Requirements
+## 要求
 
 - [Docker Compose](https://docs.docker.com/compose/)
 
 ---
 
-## Getting Started
+## 快速开始
 
 ### Linux
 
@@ -82,13 +77,13 @@ docker compose up -d
 docker compose exec service bash
 ```
 
-Now you are inside the Python container 🎉
+现在你已经进入 Python 容器了 🎉
 
-If you use JupyterLab, just you need to access http://localhost:8888
+如果使用 JupyterLab，只需访问 http://localhost:8888
 
 ---
 
-### Test
+### 测试
 
 ```bash
 # pytest
@@ -106,5 +101,5 @@ docker compose \
 -lc 'ruff check /app /tests'
 ```
 
-## License
+## 许可证
 - Apache License 2.0

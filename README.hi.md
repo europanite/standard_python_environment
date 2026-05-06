@@ -1,6 +1,7 @@
+> **नोट:** यह README.md का अनुवादित संस्करण है। अंग्रेज़ी README ही सत्य का मूल स्रोत है।
+
 # [Standard Python Environment](https://github.com/europanite/standard_python_environment "Standard Python Environment")
 
-[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Python](https://img.shields.io/badge/python-3.9|%203.10%20|%203.11|%203.12|%203.13-blue)](https://www.python.org/)
 ![OS](https://img.shields.io/badge/OS-Linux%20%7C%20macOS%20%7C%20Windows-blue)
 
@@ -9,10 +10,6 @@
 [![Pytest](https://github.com/europanite/standard_python_environment/actions/workflows/pytest.yml/badge.svg)](https://github.com/europanite/standard_python_environment/actions/workflows/pytest.yml)
 [![pages-build-deployment](https://github.com/europanite/standard_python_environment/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/europanite/standard_python_environment/actions/workflows/pages/pages-build-deployment)
 [![CodeQL Advanced](https://github.com/europanite/standard_python_environment/actions/workflows/codeql.yml/badge.svg)](https://github.com/europanite/standard_python_environment/actions/workflows/codeql.yml)
-
-![Python](https://img.shields.io/badge/python-3670A0?logo=python&logoColor=ffdd54)
-![Pytest](https://img.shields.io/badge/pytest-%23ffffff.svg?logo=pytest&logoColor=2f9fe3)
-![Jupyter Notebook](https://img.shields.io/badge/jupyter-%23FA0F00.svg?logo=jupyter&logoColor=white)
 
 <p align="right">
   <a href="./README.md">🇺🇸 English</a> |
@@ -26,31 +23,31 @@
   <a href="./README.fr.md">🇫🇷 Français</a>
 </p>
 
-A standard **Python** environment built with **Docker Compose**.
+**Docker Compose** से बनाया गया एक मानक **Python** वातावरण।
 
 !["image"](./assets/images/image.png)
 
 ---
 
-## Features
+## विशेषताएँ
 
-- **Reproducibility**: Dependencies are locked inside the container
-- **Simplicity**: Run with just docker compose commands
-- **Portability**: Works on Linux, macOS, and Windows
-- **pip ready**: Install and manage Python packages easily
-- **JupyterLab support**: (Optional) Run notebooks inside the container
-- **X11 forwarding**: (Optional) Run GUI-based Python apps
+- **पुनरुत्पादनयोग्यता**: डिपेंडेंसीज़ कंटेनर के अंदर लॉक रहती हैं
+- **सरलता**: केवल docker compose कमांड से चलाएँ
+- **पोर्टेबिलिटी**: Linux, macOS, और Windows पर काम करता है
+- **pip ready**: Python पैकेज आसानी से इंस्टॉल और मैनेज करें
+- **JupyterLab support**: (वैकल्पिक) कंटेनर के अंदर notebooks चलाएँ
+- **X11 forwarding**: (वैकल्पिक) GUI-आधारित Python ऐप्स चलाएँ
 
 ---
 
 
-## Requirements
+## आवश्यकताएँ
 
 - [Docker Compose](https://docs.docker.com/compose/)
 
 ---
 
-## Getting Started
+## शुरू करना
 
 ### Linux
 
@@ -82,13 +79,13 @@ docker compose up -d
 docker compose exec service bash
 ```
 
-Now you are inside the Python container 🎉
+अब आप Python कंटेनर के अंदर हैं 🎉
 
-If you use JupyterLab, just you need to access http://localhost:8888
+यदि आप JupyterLab का उपयोग करते हैं, तो आपको बस http://localhost:8888 खोलना है
 
 ---
 
-### Test
+### टेस्ट
 
 ```bash
 # pytest
@@ -106,5 +103,5 @@ docker compose \
 -lc 'ruff check /app /tests'
 ```
 
-## License
+## लाइसेंस
 - Apache License 2.0
