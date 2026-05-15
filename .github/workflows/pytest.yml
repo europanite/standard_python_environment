@@ -31,6 +31,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           cache: "pip"
+          cache-dependency-path: service/requirements.test.txt
 
       - name: Install deps (Unix)
         if: matrix.os != 'windows-latest'
