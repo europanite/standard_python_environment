@@ -1,3 +1,10 @@
+---
+layout: page
+title: English
+permalink: /
+lang: en
+---
+
 # [Standard Python Environment](https://github.com/europanite/standard_python_environment "Standard Python Environment")
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)

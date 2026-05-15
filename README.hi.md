@@ -1,4 +1,9 @@
-> **नोट:** यह README.md का अनुवादित संस्करण है। अंग्रेज़ी README ही सत्य का मूल स्रोत है।
+---
+layout: page
+title: हिन्दी
+permalink: /hi/
+lang: hi
+---
 
 # [Standard Python Environment](https://github.com/europanite/standard_python_environment "Standard Python Environment")
 

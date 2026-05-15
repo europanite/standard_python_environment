@@ -1,3 +1,10 @@
+---
+layout: page
+title: PT-BR
+permalink: /pt-BR/
+lang: pt-BR
+---
+
 [![Python](https://img.shields.io/badge/python-3.9|%203.10%20|%203.11|%203.12|%203.13-blue)](https://www.python.org/)
 ![OS](https://img.shields.io/badge/OS-Linux%20%7C%20macOS%20%7C%20Windows-blue)
 

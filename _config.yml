@@ -8,3 +8,17 @@ plugins:
   - jekyll-feed
   - jekyll-sitemap
 highlighter: rouge
+
+header_pages:
+  - README.md
+  - README.ja.md
+  - README.hi.md
+  - README.zh-CN.md
+  - README.es.md
+  - README.pt-BR.md
+  - README.ko.md
+  - README.de.md
+  - README.fr.md
+
+exclude:
+  - service/reports/
