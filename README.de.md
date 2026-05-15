@@ -16,16 +16,20 @@ lang: de
 [![pages-build-deployment](https://github.com/europanite/standard_python_environment/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/europanite/standard_python_environment/actions/workflows/pages/pages-build-deployment)
 [![CodeQL Advanced](https://github.com/europanite/standard_python_environment/actions/workflows/codeql.yml/badge.svg)](https://github.com/europanite/standard_python_environment/actions/workflows/codeql.yml)
 
+![Python](https://img.shields.io/badge/python-3670A0?logo=python&logoColor=ffdd54)
+![Pytest](https://img.shields.io/badge/pytest-%23ffffff.svg?logo=pytest&logoColor=2f9fe3)
+![Jupyter Notebook](https://img.shields.io/badge/jupyter-%23FA0F00.svg?logo=jupyter&logoColor=white)
+
 <p align="right">
-  <a href="/standard_python_environment/">🇺🇸 English</a> |
-  <a href="/standard_python_environment/hi/">🇮🇳 हिन्दी</a> |
-  <a href="/standard_python_environment/ja/">🇯🇵 日本語</a> |
-  <a href="/standard_python_environment/zh-CN/">🇨🇳 简体中文</a> |
-  <a href="/standard_python_environment/es/">🇪🇸 Español</a> |
-  <a href="/standard_python_environment/pt-BR/">🇧🇷 Português (Brasil)</a> |
-  <a href="/standard_python_environment/ko/">🇰🇷 한국어</a> |
-  <a href="/standard_python_environment/de/">🇩🇪 Deutsch</a> |
-  <a href="/standard_python_environment/fr/">🇫🇷 Français</a>
+  <a href="https://europanite.github.io/standard_python_environment/">🇺🇸 English</a> |
+  <a href="https://europanite.github.io/standard_python_environment/hi/">🇮🇳 हिंदी</a> |
+  <a href="https://europanite.github.io/standard_python_environment/ja/">🇯🇵 日本語</a> |
+  <a href="https://europanite.github.io/standard_python_environment/zh-CN/">🇨🇳 简体中文</a> |
+  <a href="https://europanite.github.io/standard_python_environment/es/">🇪🇸 Español</a> |
+  <a href="https://europanite.github.io/standard_python_environment/pt-BR/">🇧🇷 Português (Brasil)</a> |
+  <a href="https://europanite.github.io/standard_python_environment/ko/">🇰🇷 한국어</a> |
+  <a href="https://europanite.github.io/standard_python_environment/de/">🇩🇪 Deutsch</a> |
+  <a href="https://europanite.github.io/standard_python_environment/fr/">🇫🇷 Français</a>
 </p>
 
 Eine standardisierte **Python**-Umgebung, erstellt mit **Docker Compose**.
