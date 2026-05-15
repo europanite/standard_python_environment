@@ -18,7 +18,7 @@ jobs:
       matrix:
         os: [ ubuntu-latest ]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v4
       - name: Build service TEST image 
@@ -47,7 +47,7 @@ jobs:
         os: [ubuntu-latest]
     needs: build-test-images
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: actions/download-artifact@v6
         with:
           name: test-images
