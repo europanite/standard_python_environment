@@ -1,3 +1,10 @@
+---
+layout: page
+title: 한국어
+permalink: /ko/
+lang: ko
+---
+
 # [Standard Python Environment](https://github.com/europanite/standard_python_environment "Standard Python Environment")
 
 [![Python](https://img.shields.io/badge/python-3.9|%203.10%20|%203.11|%203.12|%203.13-blue)](https://www.python.org/)
