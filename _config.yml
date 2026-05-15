@@ -11,8 +11,8 @@ highlighter: rouge
 
 header_pages:
   - README.md
-  - README.ja.md
   - README.hi.md
+  - README.ja.md
   - README.zh-CN.md
   - README.es.md
   - README.pt-BR.md
