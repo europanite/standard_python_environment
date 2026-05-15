@@ -32,15 +32,15 @@ jobs:
           python-version: ${{ matrix.python-version }}
           cache: "pip"
 
-      - name: Install deps (Ubuntu)
-        if: matrix.os == 'ubuntu-latest'
+      - name: Install deps (Unix)
+        if: matrix.os != 'windows-latest'
         shell: bash
         run: |
           set -eux
           python -m pip install -U pip
-          pip install -r service/requirements.test.txt
+          python -m pip install -r service/requirements.test.txt
           if [ -f service/pyproject.toml ] || [ -f service/setup.cfg ] || [ -f service/setup.py ]; then
-            pip install -e service
+            python -m pip install -e service
           fi
       - name: Install deps (Windows)
         if: matrix.os == 'windows-latest'
@@ -48,7 +48,7 @@ jobs:
         run: |
           $ErrorActionPreference = "Stop"
           python -m pip install -U pip
-          pip install -r service/requirements.test.txt
+          python -m pip install -r service/requirements.test.txt
           $hasPythonProject = (Test-Path -Path 'service/pyproject.toml') -or
                             (Test-Path -Path 'service/setup.cfg') -or
                             (Test-Path -Path 'service/setup.py')
@@ -62,7 +62,7 @@ jobs:
         run: |
           python --version
           pip --version
-          pytest --version
+          python -m pytest --version
           python -c "import sys,platform,os;print(platform.platform());print(sys.version);print('PYTHONPATH=',os.environ.get('PYTHONPATH'))"
       - name: Run tests with coverage
         shell: bash
