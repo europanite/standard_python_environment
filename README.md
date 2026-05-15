@@ -1,6 +1,6 @@
 ---
 layout: page
-title: English
+title: "🇺🇸 English"
 permalink: /
 lang: en
 ---
@@ -22,15 +22,15 @@ lang: en
 ![Jupyter Notebook](https://img.shields.io/badge/jupyter-%23FA0F00.svg?logo=jupyter&logoColor=white)
 
 <p align="right">
-  <a href="./README.md">🇺🇸 English</a> |
-  <a href="./README.hi.md">🇮🇳 हिंदी</a> |
-  <a href="./README.ja.md">🇯🇵 日本語</a> |
-  <a href="./README.zh-CN.md">🇨🇳 简体中文</a> |
-  <a href="./README.es.md">🇪🇸 Español</a> |
-  <a href="./README.pt-BR.md">🇧🇷 Português (Brasil)</a> |
-  <a href="./README.ko.md">🇰🇷 한국어</a> |
-  <a href="./README.de.md">🇩🇪 Deutsch</a> |
-  <a href="./README.fr.md">🇫🇷 Français</a>
+  <a href="/standard_python_environment/">🇺🇸 English</a> |
+  <a href="/standard_python_environment/hi/">🇮🇳 हिन्दी</a> |
+  <a href="/standard_python_environment/ja/">🇯🇵 日本語</a> |
+  <a href="/standard_python_environment/zh-CN/">🇨🇳 简体中文</a> |
+  <a href="/standard_python_environment/es/">🇪🇸 Español</a> |
+  <a href="/standard_python_environment/pt-BR/">🇧🇷 Português (Brasil)</a> |
+  <a href="/standard_python_environment/ko/">🇰🇷 한국어</a> |
+  <a href="/standard_python_environment/de/">🇩🇪 Deutsch</a> |
+  <a href="/standard_python_environment/fr/">🇫🇷 Français</a>
 </p>
 
 A standard **Python** environment built with **Docker Compose**.

@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 中文
+title: "🇨🇳 中文"
 permalink: /zh-CN/
 lang: zh-CN
 ---
@@ -17,15 +17,15 @@ lang: zh-CN
 [![CodeQL Advanced](https://github.com/europanite/standard_python_environment/actions/workflows/codeql.yml/badge.svg)](https://github.com/europanite/standard_python_environment/actions/workflows/codeql.yml)
 
 <p align="right">
-  <a href="./README.md">🇺🇸 English</a> |
-  <a href="./README.hi.md">🇮🇳 हिंदी</a> |
-  <a href="./README.ja.md">🇯🇵 日本語</a> |
-  <a href="./README.zh-CN.md">🇨🇳 简体中文</a> |
-  <a href="./README.es.md">🇪🇸 Español</a> |
-  <a href="./README.pt-BR.md">🇧🇷 Português (Brasil)</a> |
-  <a href="./README.ko.md">🇰🇷 한국어</a> |
-  <a href="./README.de.md">🇩🇪 Deutsch</a> |
-  <a href="./README.fr.md">🇫🇷 Français</a>
+  <a href="/standard_python_environment/">🇺🇸 English</a> |
+  <a href="/standard_python_environment/hi/">🇮🇳 हिन्दी</a> |
+  <a href="/standard_python_environment/ja/">🇯🇵 日本語</a> |
+  <a href="/standard_python_environment/zh-CN/">🇨🇳 简体中文</a> |
+  <a href="/standard_python_environment/es/">🇪🇸 Español</a> |
+  <a href="/standard_python_environment/pt-BR/">🇧🇷 Português (Brasil)</a> |
+  <a href="/standard_python_environment/ko/">🇰🇷 한국어</a> |
+  <a href="/standard_python_environment/de/">🇩🇪 Deutsch</a> |
+  <a href="/standard_python_environment/fr/">🇫🇷 Français</a>
 </p>
 
 一个使用 **Docker Compose** 构建的标准 **Python** 环境。
