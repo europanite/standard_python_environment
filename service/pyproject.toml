@@ -22,7 +22,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "standard_python_environment"
 version = "0.0.0"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 
 [tool.setuptools]
 packages = ["app", "data"]
