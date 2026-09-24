@@ -18,7 +18,7 @@ jobs:
       matrix:
         os: [ ubuntu-latest ]
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v4
       - name: Build service TEST image 
@@ -47,8 +47,8 @@ jobs:
         os: [ubuntu-latest]
     needs: build-test-images
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/download-artifact@v6
+      - uses: actions/checkout@v7
+      - uses: actions/download-artifact@v7
         with:
           name: test-images
       - name: Load images
@@ -62,7 +62,7 @@ jobs:
               python -m coverage run -m pytest
             '
       - name: Upload coverage xml
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: coverage-xml
           path: service/reports/ci/coverage.xml
